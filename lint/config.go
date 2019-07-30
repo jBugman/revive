@@ -14,11 +14,11 @@ type RulesConfig = map[string]RuleConfig
 
 // Config defines the config of the linter.
 type Config struct {
-	IgnoreGeneratedHeader  bool `toml:"ignoreGeneratedHeader"`
-	Confidence             float64
-	Severity               Severity
-	Rules                  RulesConfig `toml:"rule"`
-	ErrorCode              int         `toml:"errorCode"`
-	WarningCode            int         `toml:"warningCode"`
-	SpecifyDisableReason   bool `toml:"specifyDisableReason"`
+	IgnoreGeneratedHeader bool `toml:"ignoreGeneratedHeader"`
+	Confidence            float64
+	Severity              Severity
+	Rules                 RulesConfig `toml:"rule"`
+	ErrorCode             int         `toml:"errorCode"`
+	WarningCode           int         `toml:"warningCode"`
+	SpecifyDisableReason  bool        `toml:"specifyDisableReason"`
 }

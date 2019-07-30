@@ -129,11 +129,16 @@ type enableDisableConfig struct {
 }
 
 const directiveRE = `^//[\s]*revive:(enable|disable)(?:-(line|next-line))?(?::([^\s]+))?[\s]*(?: (.+))?$`
+
 var re = regexp.MustCompile(directiveRE)
-const directivePos = 1
-const modifierPos = 2
-const rulesPos = 3
-const reasonPos = 4
+
+const (
+	directivePos = 1
+	modifierPos  = 2
+	rulesPos     = 3
+	reasonPos    = 4
+)
+
 func (f *File) disabledIntervals(rules []Rule, specifyDisableReason bool) disabledIntervalsMap {
 	enabledDisabledRulesMap := make(map[string][]enableDisableConfig)
 
@@ -217,8 +222,8 @@ func (f *File) disabledIntervals(rules []Rule, specifyDisableReason bool) disabl
 			}
 
 			mustCheckDisablingReason := specifyDisableReason && match[directivePos] == "disable"
-			if  mustCheckDisablingReason && strings.Trim(match[reasonPos]," ") == "" {
-				fmt.Fprintln(os.Stderr, fmt.Sprintf("%s:%d: reason of lint disabling not found.", filename,line))
+			if mustCheckDisablingReason && strings.Trim(match[reasonPos], " ") == "" {
+				fmt.Fprintln(os.Stderr, fmt.Sprintf("%s:%d: reason of lint disabling not found.", filename, line))
 				os.Exit(1)
 			}
 
